@@ -1,14 +1,19 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Restaurants</h1>
-
-<div id="restaurants">
-  <% @restaurants.each do |restaurant| %>
-    <%= render restaurant %>
-    <p>
-      <%= link_to "Show this restaurant", restaurant %>
-    </p>
-  <% end %>
+<div class="container p-5">
+  <h1 class="text-dark text-center mb-5">Restaurants</h1>
+  <div class="row">
+    <% @restaurants.each do |restaurant| %>
+      <div class="col-md-3 mb-4">
+        <div class="card border-primary h-100" style="max-width: 18rem;">
+          <div class="card-header d-flex align-items-center justify-content-center">RESTAURANT</div>
+          <div class="card-body">
+            <h5 class="card-title text-primary"><%= link_to restaurant.name, restaurant_path(restaurant), class:"text-decoration-none" %></h5>
+            <p class="card-text font-weight-bold"><strong>Category:</strong> <%= restaurant.category %></p>
+            <p class="card-text"><strong>Location:</strong> <%= restaurant.address %></p>
+            <p class="card-text"><strong>Contact:</strong> <%= restaurant.phone_number %></p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <button class="btn btn-primary col-3 mx-auto text-center p-1 border rounded d-flex align-items-center justify-content-center"><%= link_to 'Add new restaurant', new_restaurant_path, class:"text-light text-decoration-none fs-3 text" %></button>
 </div>
-
-<%= link_to "New restaurant", new_restaurant_path %>

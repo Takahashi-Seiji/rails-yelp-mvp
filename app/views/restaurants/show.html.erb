@@ -1,10 +1,28 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @restaurant %>
-
-<div>
-  <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-  <%= link_to "Back to restaurants", restaurants_path %>
-
-  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+<div class="container p-5 d-flex flex-column align-items-center justify-content-center">
+  <h1 class="mb-5">Restaurant</h1>
+  <div class="col-md-3 mb-4">
+    <div class="card border-primary h-100" style="max-width: 18rem;">
+      <div class="card-header d-flex align-items-center justify-content-center">Restaurant</div>
+        <div class="card-body">
+            <h5 class="card-title text-primary"><%= @restaurant.name %></h5>
+            <p class="card-text font-weight-bold"><strong>Category:</strong> <%= @restaurant.category %></p>
+            <p class="card-text"><strong>Location:</strong> <%= @restaurant.address %></p>
+            <p class="card-text"><strong>Contact:</strong> <%= @restaurant.phone_number %></p>
+            <p class="card-text"><strong>Reviews:</strong></p>
+            <ul class="list-group">
+              <% @restaurant.reviews.each do |review| %>
+                <div>
+                  <li class="list-group-item mb-2"><%= review.content %>
+                  <br>
+                  Rating: <%= review.rating %><i class="fa-solid fa-star" style="color: #ffea00;"></i></li>
+                </div>
+              <% end %>
+            </ul>
+            <br>
+          </div>
+          <button class="btn btn-primary border rounded m-2"><%= link_to 'Back to Restaurants', restaurants_path, class:"text-light text-decoration-none" %></button>
+          <button class="btn btn-primary border rounded m-2"><%= link_to 'Write a Review', new_restaurant_review_path(@restaurant), class:"text-light text-decoration-none" %></button>
+        </div>
+    </div>
+  </div>
 </div>
